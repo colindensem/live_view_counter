@@ -13,10 +13,12 @@ config :live_view_counter, LiveViewCounterWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "CZwON67qb2SdWy0fVTVB3k55zIKxe6E+t1Xi6S1QmaIEL6QSme3K1a8gYJVlmKKq",
+  secret_key_base:
+    "CZwON67qb2SdWy0fVTVB3k55zIKxe6E+t1Xi6S1QmaIEL6QSme3K1a8gYJVlmKKq",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild:
+      {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ]
 
 # ## SSL Support

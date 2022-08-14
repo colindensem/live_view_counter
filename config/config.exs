@@ -10,7 +10,11 @@ import Config
 # Configures the endpoint
 config :live_view_counter, LiveViewCounterWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: LiveViewCounterWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    view: LiveViewCounterWeb.ErrorView,
+    accepts: ~w(html json),
+    layout: false
+  ],
   pubsub_server: LiveViewCounter.PubSub,
   live_view: [signing_salt: "jkrjYu94"]
 
@@ -21,7 +25,8 @@ config :live_view_counter, LiveViewCounterWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :live_view_counter, LiveViewCounter.Mailer, adapter: Swoosh.Adapters.Local
+config :live_view_counter, LiveViewCounter.Mailer,
+  adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

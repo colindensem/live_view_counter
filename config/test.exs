@@ -4,12 +4,12 @@ import Config
 # you can enable the server option below.
 config :live_view_counter, LiveViewCounterWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "vWf06qpJEXIsVKHSehGy0LHA+4YsQppiw4RKjqTPyzRBC0PKjK9loFdlH04HuVKs",
+  secret_key_base:
+    "vWf06qpJEXIsVKHSehGy0LHA+4YsQppiw4RKjqTPyzRBC0PKjK9loFdlH04HuVKs",
   server: false
 
 # In test we don't send emails.
-config :live_view_counter, LiveViewCounter.Mailer,
-  adapter: Swoosh.Adapters.Test
+config :live_view_counter, LiveViewCounter.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn

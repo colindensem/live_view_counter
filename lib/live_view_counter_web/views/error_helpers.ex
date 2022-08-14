@@ -39,7 +39,14 @@ defmodule LiveViewCounterWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(LiveViewCounterWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(
+        LiveViewCounterWeb.Gettext,
+        "errors",
+        msg,
+        msg,
+        count,
+        opts
+      )
     else
       Gettext.dgettext(LiveViewCounterWeb.Gettext, "errors", msg, opts)
     end
