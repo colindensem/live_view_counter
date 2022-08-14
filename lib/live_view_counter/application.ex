@@ -14,6 +14,8 @@ defmodule LiveViewCounter.Application do
       LiveViewCounterWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: LiveViewCounter.PubSub},
+      # Start presence tracking - after pubsub started!
+      LiveViewCounter.Presence,
       # Start the Endpoint (http/https)
       LiveViewCounterWeb.Endpoint
       # Start a worker by calling: LiveViewCounter.Worker.start_link(arg)
