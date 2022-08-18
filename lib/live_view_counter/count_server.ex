@@ -1,4 +1,4 @@
-defmodule LiveViewCounter.Count do
+defmodule LiveViewCounter.CountServer do
   use GenServer
 
   alias Phoenix.PubSub

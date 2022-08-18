@@ -9,7 +9,7 @@ defmodule LiveViewCounter.Application do
   def start(_type, _args) do
     children = [
       # Start Genserver Count
-      LiveViewCounter.Count,
+      LiveViewCounter.CountServer,
       # Start the Telemetry supervisor
       LiveViewCounterWeb.Telemetry,
       # Start the PubSub system
