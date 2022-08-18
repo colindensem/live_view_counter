@@ -1,11 +1,11 @@
 defmodule LiveViewCounterWeb.Counter do
   use Phoenix.LiveView
 
-  alias LiveViewCounter.Count
+  alias LiveViewCounter.CountServer
   alias LiveViewCounter.Presence
   alias Phoenix.PubSub
 
-  @topic Count.topic()
+  @topic CountServer.topic()
   @topic_presence "presence"
 
   def render(assigns) do
@@ -15,11 +15,12 @@ defmodule LiveViewCounterWeb.Counter do
       <button phx-click="dec">-</button>
       <button phx-click="inc">+</button>
       <h1>Current users: <%= @present %></h1>
+      <h2>Session: <%= @session_id %></h2>
     </div>
     """
   end
 
-  def mount(_params, _session, socket) do
+  def mount(_params, %{"session_id" => session_id}, socket) do
     PubSub.subscribe(LiveViewCounter.PubSub, @topic)
     Presence.track(self(), @topic_presence, socket.id, %{})
     LiveViewCounterWeb.Endpoint.subscribe(@topic_presence)
@@ -28,15 +29,20 @@ defmodule LiveViewCounterWeb.Counter do
       Presence.list(@topic_presence)
       |> map_size()
 
-    {:ok, assign(socket, val: Count.current(), present: initial_present)}
+    {:ok,
+     assign(socket,
+       val: CountServer.current(),
+       present: initial_present,
+       session_id: session_id
+     )}
   end
 
   def handle_event("inc", _, socket) do
-    {:noreply, assign(socket, :val, Count.incr())}
+    {:noreply, assign(socket, :val, CountServer.incr())}
   end
 
   def handle_event("dec", _, socket) do
-    {:noreply, assign(socket, :val, Count.decr())}
+    {:noreply, assign(socket, :val, CountServer.decr())}
   end
 
   def handle_info({:count, count}, socket) do
